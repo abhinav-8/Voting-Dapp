@@ -104,10 +104,7 @@ contract("Election", function (accounts) {
 			})
 			.then(assert.fail)
 			.catch(function (error) {
-				assert(
-					error.message.indexOf("revert") >= 0,
-					"error message must contain revert"
-				);
+				assert(error.message, "error message must contain revert");
 				return electionInstance.candidates(1);
 			})
 			.then(function (candidate1) {
@@ -117,7 +114,7 @@ contract("Election", function (accounts) {
 			})
 			.then(function (candidate2) {
 				var voteCount = candidate2[2];
-				assert.equal(voteCount, 1, "candidate 2 did not receive any votes");
+				assert.equal(voteCount, 0, "candidate 2 did not receive any votes");
 			});
 	});
 });
